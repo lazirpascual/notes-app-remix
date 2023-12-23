@@ -1,9 +1,4 @@
-import {
-  ActionFunctionArgs,
-  json,
-  LinksFunction,
-  redirect,
-} from "@remix-run/node";
+import { ActionFunctionArgs, LinksFunction, redirect } from "@remix-run/node";
 import NewNote, { links as newNoteStyles } from "~/components/NewNote";
 import { getStoredNotes, storeNotes } from "~/data/notes";
 import NoteList, { links as noteListLink } from "~/components/NoteList";
@@ -13,6 +8,7 @@ import {
   useRouteError,
   isRouteErrorResponse,
 } from "@remix-run/react";
+import uuid from "react-uuid";
 
 export default function NotesPage() {
   const notes = useLoaderData();
@@ -39,12 +35,13 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const noteData = Object.fromEntries(formData);
 
-  if (noteData.title.toString().trim().length > 5) {
+  if (noteData.title.toString().trim().length < 5) {
     return { message: "Invalid title - must be at least 5 characters long." };
   }
 
   const existingNotes = await getStoredNotes();
-  noteData.id = new Date().toDateString();
+  noteData.id = uuid();
+  noteData.time = new Date().toISOString();
   const updatedNotes = existingNotes.concat(noteData);
   await storeNotes(updatedNotes);
   return redirect("/notes");

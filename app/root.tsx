@@ -18,6 +18,13 @@ export const links: LinksFunction = () => [
   ...(styles ? [{ rel: "stylesheet", href: styles }] : []),
 ];
 
+export const meta = () => {
+  return [
+    { title: "All notes" },
+    { name: "Notes", content: "Manage your notes with ease." },
+  ];
+};
+
 export default function App() {
   return (
     <html lang="en">

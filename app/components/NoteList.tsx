@@ -7,14 +7,14 @@ function NoteList({ notes }: any) {
     <ul id="note-list">
       {notes.map((note: any, index: any) => (
         <li key={note.id} className="note">
-          <Link to={note.id}>
+          <Link to={`/details/${note.id}`}>
             <article>
               <header>
                 <ul className="note-meta">
                   <li>#{index + 1}</li>
                   <li>
-                    <time dateTime={note.id}>
-                      {new Date(note.id).toLocaleDateString("en-US", {
+                    <time dateTime={note.time}>
+                      {new Date(note.time).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",

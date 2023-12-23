@@ -1,1 +1,16 @@
-{ "notes": [] }
+{
+  "notes": [
+    {
+      "title": "Test Note",
+      "content": "this is a test note",
+      "id": "150b394c-66a4-e144-f6f3-2991e60ee0ec",
+      "time": "2023-12-23T09:34:19.224Z"
+    },
+    {
+      "title": "Gym Reminder",
+      "content": "Reminder: Go to the gym",
+      "id": "c10ff096-fa94-c03e-ef3d-7b2b188f81c0",
+      "time": "2023-12-23T09:34:58.758Z"
+    }
+  ]
+}
